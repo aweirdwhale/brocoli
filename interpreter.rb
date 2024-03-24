@@ -21,23 +21,13 @@ end
 # On lit le fichier source ligne par ligne et on stoque le contenu dans une liste
 source = File.readlines(args[1])
 
-# On initialise les variables
-filepath = args[1]
-lines = 0
-lineTable = []
-variables = {}
-functions = {}
 
-# On parcourt chaque ligne du fichier source
-while lines < source.length
-  # On ajoute la ligne courante à la table des lignes
-  lineTable.push(source[lines])
-  lines += 1
-end
+# On initialise les variables qui vont nous permettre de stocker les informations
+
 
 puts "Filepath: #{filepath}"
 puts "Lines: #{lines}"
-puts "Line Table: #{lineTable}"
+puts "Line Table: #{code}"
 
 
 filename = args[1]
