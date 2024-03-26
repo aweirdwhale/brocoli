@@ -1,5 +1,31 @@
-10% Bug Free
+//*
+fully written with Busin GriddyCode by FaceCodes
 
-helloworld("print")----
+Language rules :
+	1. comments are //
+	2. you have to start your code by "10% bug free !" and end it by :q!
+	3. you must end your lines by 5 dashes
+	4. integers must be in roman numerals
+	5. functions are defined by "baarakunda name([args]) -> id"
+	6. vars are defined by "type name -> value"
+	7. to call a function, litterally call it
+	8. to use the interpreter, you'll have to balance half a chemical equation
+	9. print -> helloworld / return -> go ...
+Maybe I'll do a more useful language one day
+Have fun !
+*//
+
+10% bug free !
+
+baarakunda main(nonojose) -> 05624589 {
+	string hw -> "Hello, World"
+	go(hw)
+}
+
+call(+335624589)
 
 :q!
+
+// this code defines a function that takes no arguments
+// then we define a string "hello, world" and we return it
+// finally we call the functions
