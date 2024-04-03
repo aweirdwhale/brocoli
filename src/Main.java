@@ -2,7 +2,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String expression = "3 + 4.5 * (10 - 2) + \"hello\"";
+        //open .brcli file and run the Lexer on it
+
+
+
         Lexer lexer = new Lexer(expression);
 
         try {

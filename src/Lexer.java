@@ -22,10 +22,7 @@ public class Lexer {
                 tokens.add(new Token(TokenType.OPERATOR, String.valueOf(currentChar)));
                 position++;
             } else if (currentChar == '(') {
-                tokens.add(new Token(TokenType.L_PARENTHESIS, String.valueOf(currentChar)));
-                position++;
-            } else if (currentChar == ')'){
-                tokens.add(new Token(TokenType.R_PARENTHESIS, String.valueOf(currentChar)));
+                tokens.add(new Token(TokenType.PARENTHESIS, String.valueOf(currentChar)));
                 position++;
             } else if (currentChar == '"') {
                 tokens.add(readString());

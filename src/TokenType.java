@@ -3,7 +3,6 @@ public enum TokenType {
     FLOAT,
     STRING,
     OPERATOR,
-    R_PARENTHESIS,
-    L_PARENTHESIS,
+    PARENTHESIS,
 
 }
