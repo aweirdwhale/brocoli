@@ -1,15 +1,18 @@
-
+package xyz.aweirdwhale.brocolang.lexer;
 
 public class Token {
-    private TokenType type;
+    private TokenTypes type;
     private String value;
 
-    public Token(TokenType type, String value) {
+    private String position;
+
+    public Token(TokenTypes type, String value, String position) {
         this.type = type;
         this.value = value;
+        this.position = position;
     }
 
-    public TokenType getType() {
+    public TokenTypes getType() {
         return type;
     }
 
@@ -22,6 +25,7 @@ public class Token {
         return "{" +
                 "type=" + type +
                 ", value='" + value + '\'' +
+                ", position='" + position + '\'' +
                 '}';
     }
 }

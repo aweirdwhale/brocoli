@@ -1,3 +1,5 @@
+package xyz.aweirdwhale.brocolang.lexer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +21,31 @@ public class Lexer {
             if (Character.isDigit(currentChar)) {
                 tokens.add(readNumber());
             } else if (isOperator(currentChar)) {
-                tokens.add(new Token(TokenType.OPERATOR, String.valueOf(currentChar)));
+                tokens.add(new Token(TokenTypes.OPERATOR, String.valueOf(currentChar), String.valueOf(position)));
                 position++;
-            } else if (currentChar == '(') {
-                tokens.add(new Token(TokenType.PARENTHESIS, String.valueOf(currentChar)));
+            } else if (currentChar == '(' || currentChar == ')') {
+                tokens.add(new Token(TokenTypes.PARENTHESIS, String.valueOf(currentChar), String.valueOf(position)));
                 position++;
             } else if (currentChar == '"') {
                 tokens.add(readString());
             } else if (Character.isWhitespace(currentChar)) {
                 position++;
-            } else {
+            } else if (Character.isLetter(currentChar)) {
+                StringBuilder sb = new StringBuilder();
+                while (position < input.length() && Character.isLetter(input.charAt(position))) {
+                    sb.append(input.charAt(position));
+                    position++;
+                }
+                tokens.add(new Token(TokenTypes.STRING, sb.toString(), String.valueOf(position)));
+            } else if (currentChar == ';') {
+                tokens.add(new Token(TokenTypes.LINEND, ";", String.valueOf(position)));
+                position++;
+            } else if (currentChar  == '#') {
+                // Skip the rest of the line if we encounter a comment
+                while (position < input.length() && input.charAt(position) != '\n') {
+                    position++;
+                }
+            }  else {
                 throw new LexerException("Invalid character: " + currentChar);
             }
         }
@@ -53,9 +70,9 @@ public class Lexer {
         }
 
         if (hasDecimal) {
-            return new Token(TokenType.FLOAT, sb.toString());
+            return new Token(TokenTypes.FLOAT, sb.toString(), String.valueOf(position));
         } else {
-            return new Token(TokenType.INT, sb.toString());
+            return new Token(TokenTypes.INT, sb.toString(), String.valueOf(position));
         }
     }
 
@@ -70,7 +87,7 @@ public class Lexer {
             throw new LexerException("Unterminated string literal");
         }
         position++; // Skip the closing quote
-        return new Token(TokenType.STRING, sb.toString());
+        return new Token(TokenTypes.STRING, sb.toString(), String.valueOf(position));
     }
 
     private boolean isOperator(char c) {
