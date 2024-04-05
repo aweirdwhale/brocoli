@@ -1,4 +1,8 @@
 print "Hello, world!";
 print 1 + 6;
 
-# This is a comment
+// This is a comment
+
+if 1 == 1 {
+    return true;
+}

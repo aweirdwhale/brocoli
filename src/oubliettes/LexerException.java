@@ -1,4 +1,4 @@
-package xyz.aweirdwhale.brocolang.lexer;
+package oubliettes;
 
 public class LexerException extends Exception {
     public LexerException(String message) {

@@ -1,31 +1,19 @@
 package xyz.aweirdwhale.brocolang.lexer;
 
 public class Token {
-    private TokenTypes type;
-    private String value;
+    final TokenType type;
+    final String lexeme;
+    final Object literal;
+    final int line;
 
-    private String position;
-
-    public Token(TokenTypes type, String value, String position) {
+    Token(TokenType type, String lexeme, Object literal, int line) {
         this.type = type;
-        this.value = value;
-        this.position = position;
+        this.lexeme = lexeme;
+        this.literal = literal;
+        this.line = line;
     }
 
-    public TokenTypes getType() {
-        return type;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    @Override
     public String toString() {
-        return "{" +
-                "type=" + type +
-                ", value='" + value + '\'' +
-                ", position='" + position + '\'' +
-                '}';
+        return type + "(" + lexeme + ")"; // + literal
     }
 }

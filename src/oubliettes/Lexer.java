@@ -1,4 +1,4 @@
-package xyz.aweirdwhale.brocolang.lexer;
+package oubliettes;
 
 import java.util.ArrayList;
 import java.util.List;

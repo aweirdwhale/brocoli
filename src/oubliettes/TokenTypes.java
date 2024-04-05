@@ -1,4 +1,4 @@
-package xyz.aweirdwhale.brocolang.lexer;
+package oubliettes;
 
 public enum TokenTypes {
     INT,
