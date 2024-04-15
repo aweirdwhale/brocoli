@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Objects;
 
 public class Main{
@@ -77,13 +76,13 @@ public class Main{
 
     // Error handling
     // Always separate code that generates errors and code that reports it ;)
-    public static void error(int line, String message) {
-        report(line, "", message);
+    public static void error(int line, String message, int where) {
+        report(line, where, message);
     }
 
-    private static void report(int line, String where, String message) {
+    private static void report(int line, int where, String message) {
         System.err.println(
-                "Error line " + line + " : " + message);
+                "Error " + line + ":" + where + " " + message);
         hadError = true;
     }
 }

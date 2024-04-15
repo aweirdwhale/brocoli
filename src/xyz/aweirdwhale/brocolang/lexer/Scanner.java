@@ -30,7 +30,6 @@ public class Scanner {
         keywords.put("for",    FOR);
         keywords.put("func",    FUN);
         keywords.put("if",     IF);
-        //keywords.put("nil",    NIL); // Not using nil
         keywords.put("or",     OR);
         keywords.put("print",  PRINT);
         keywords.put("return", RETURN);
@@ -39,6 +38,9 @@ public class Scanner {
         keywords.put("true",   TRUE);
         keywords.put("var",    VAR);
         keywords.put("while",  WHILE);
+        keywords.put("break",  BREAK);
+        keywords.put("fuck_around", TRY);
+        keywords.put("find_out", CATCH);
     }
 
 
@@ -115,7 +117,7 @@ public class Scanner {
                 } else if (isAlpha(c)) {
                     identifier();
                 } else {
-                    Main.error(line, "Unexpected character.");
+                    Main.error(line, "Unexpected character.", current);
                     break;
                 }
         }
@@ -194,7 +196,7 @@ public class Scanner {
         }
 
         if (isAtEnd()) {
-            Main.error(line, "Expected character : (\"). ");
+            Main.error(line, "Expected \" ", current );
             return;
         }
 
