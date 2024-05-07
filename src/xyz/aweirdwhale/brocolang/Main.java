@@ -3,6 +3,11 @@ package xyz.aweirdwhale.brocolang;
 
 
 import xyz.aweirdwhale.brocolang.lexer.Scanner;
+import xyz.aweirdwhale.brocolang.lexer.Token;
+import xyz.aweirdwhale.brocolang.lexer.TokenType;
+import xyz.aweirdwhale.brocolang.ast.AstPrinter;
+import xyz.aweirdwhale.brocolang.ast.Expr;
+import xyz.aweirdwhale.brocolang.parser.Parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +15,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 
 public class Main{
@@ -67,9 +73,22 @@ public class Main{
     // for now, just print the source code
     private static void run(String source) throws IOException {
 
-        Scanner lexemes = new Scanner(source);
+//       Scanner lexemes = new Scanner(source);
+//
+//        System.out.println(lexemes.scanTokens());
 
-        System.out.println(lexemes.scanTokens());
+        
+        Scanner scanner = new Scanner(source);
+
+        List<Token> tokens = scanner.scanTokens();
+
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
+
+        // Stop if there was a syntax error.
+        if (hadError) return;
+
+        System.out.println(new AstPrinter().print(expression));
 
 
     }
@@ -82,7 +101,15 @@ public class Main{
 
     private static void report(int line, int where, String message) {
         System.err.println(
-                "Error " + line + ":" + where + " " + message);
+                "Error line " + line + " char " + where + " :: " + message);
         hadError = true;
+    }
+
+    public static void error(Token token, String message) {
+        if (token.type == TokenType.EOF) {
+            report(token.line, Integer.parseInt(" at end"), message);
+        } else {
+            report(token.line, Integer.parseInt(" at '" + token.lexeme + "'"), message);
+        }
     }
 }
